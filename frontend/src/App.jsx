@@ -77,10 +77,14 @@ export default function App() {
             Built for AP & IB teachers
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-extrabold text-slate-900 mb-8 leading-[1.05] tracking-tight max-w-5xl mx-auto">
-            Turn every class into actionable next steps
+            See your class.
+            <br />
+            <span className="bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink bg-clip-text text-transparent">
+              Improve your class.
+            </span>
           </h1>
           <p className="text-xl sm:text-2xl text-slate-600 mb-10 leading-relaxed max-w-3xl mx-auto">
-            The teacher-first copilot that delivers targeted reteach plans, exit tickets, student recaps, and coaching—in under 60 seconds.
+            Know exactly what you covered, what took too long, what confused students, and where to pick up tomorrow—with a minute-by-minute time map of every class.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
             <a
@@ -109,231 +113,409 @@ export default function App() {
       <section className="py-20 sm:py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-            Reteach takes half the class.
+            "Did we finish that?"
             <br />
-            <span className="text-slate-600">Exit tickets never happen.</span>
+            <span className="text-slate-600">"Why are we so behind in Period 3?"</span>
           </h2>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            You know what didn't land. But figuring out why and what to do tomorrow takes time you don't have.
+            You teach, but you don't know exactly what happened—what took too long, where students got lost, or where each section left off. So you guess.
           </p>
         </div>
       </section>
 
-      {/* Main feature - 4 core outputs */}
-      <section className="py-20 sm:py-32 bg-gradient-to-b from-white via-pastel-yellow/20 to-white">
+      {/* Main feature - Time Map as core */}
+      <section className="py-20 sm:py-32 bg-gradient-to-b from-white via-pastel-blue/20 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6">
-              After each class, you get four things
+              The black box of your classroom—opened
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              Specific to your objectives, textbook, and class. Ready to use immediately.
+              A minute-by-minute time map shows what actually happened in your class.
             </p>
           </div>
 
-          <div className="space-y-24">
-            {/* Feature 1 - Reteach */}
+          {/* Hero Feature - Time Map */}
+          <div className="mb-32">
+            <div className="bg-gradient-to-br from-pastel-blue to-white p-8 sm:p-12 rounded-3xl border border-slate-200 shadow-2xl max-w-5xl mx-auto">
+              <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg">
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+                  <div>
+                    <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Period 3 • AP Chemistry</div>
+                    <div className="text-lg font-bold text-slate-900">Today's Time Map</div>
+                  </div>
+                  <div className="text-sm text-slate-600">
+                    <span className="font-semibold">45 min</span> class
+                  </div>
+                </div>
+                
+                <div className="space-y-4">
+                  {/* Time block 1 */}
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-20 text-sm font-medium text-slate-600">0:00–5:00</div>
+                    <div className="flex-1 bg-pastel-yellow rounded-lg p-4 border border-slate-200">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="font-semibold text-slate-900">Warmup & Review</div>
+                        <div className="text-xs text-slate-500">5 min</div>
+                      </div>
+                      <div className="text-sm text-slate-600">Homework questions</div>
+                    </div>
+                  </div>
+
+                  {/* Time block 2 - Over time */}
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-20 text-sm font-medium text-slate-600">5:00–23:00</div>
+                    <div className="flex-1 bg-pastel-pink rounded-lg p-4 border-2 border-accent-pink/30">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="font-semibold text-slate-900 flex items-center gap-2">
+                          Limiting Reagents
+                          <span className="text-xs bg-accent-pink/20 text-accent-pink px-2 py-0.5 rounded-full font-medium">6 min over</span>
+                        </div>
+                        <div className="text-xs text-slate-500">18 min (planned 12)</div>
+                      </div>
+                      <div className="text-sm text-slate-600 mb-2">Objective 4.2 • Textbook p.142-145</div>
+                      <div className="text-sm bg-white/70 rounded px-3 py-2 border border-accent-pink/20">
+                        <span className="font-medium text-accent-pink">⚠️ Confusion spike at 18:15</span> — 8 students asked about mole ratios
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Time block 3 */}
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-20 text-sm font-medium text-slate-600">23:00–31:00</div>
+                    <div className="flex-1 bg-pastel-purple rounded-lg p-4 border border-slate-200">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="font-semibold text-slate-900">Lab Setup & Demo</div>
+                        <div className="text-xs text-slate-500">8 min</div>
+                      </div>
+                      <div className="text-sm text-slate-600">Stoichiometry lab prep</div>
+                    </div>
+                  </div>
+
+                  {/* Time block 4 - Off track */}
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-20 text-sm font-medium text-slate-600">31:00–36:00</div>
+                    <div className="flex-1 bg-slate-100 rounded-lg p-4 border border-slate-300">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="font-semibold text-slate-600 flex items-center gap-2">
+                          Off-track
+                          <span className="text-xs bg-slate-200 text-slate-600 px-2 py-0.5 rounded-full font-medium">Unplanned</span>
+                        </div>
+                        <div className="text-xs text-slate-500">5 min</div>
+                      </div>
+                      <div className="text-sm text-slate-600">Fire drill</div>
+                    </div>
+                  </div>
+
+                  {/* Time block 5 */}
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0 w-20 text-sm font-medium text-slate-600">36:00–45:00</div>
+                    <div className="flex-1 bg-pastel-blue rounded-lg p-4 border border-slate-200">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="font-semibold text-slate-900">Group Practice</div>
+                        <div className="text-xs text-slate-500">9 min</div>
+                      </div>
+                      <div className="text-sm text-slate-600">Practice problems 1-4</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-6 border-t border-slate-100 grid grid-cols-3 gap-4 text-center">
+                  <div>
+                    <div className="text-2xl font-bold text-slate-900">75%</div>
+                    <div className="text-xs text-slate-500">On planned topics</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-accent-pink">+6 min</div>
+                    <div className="text-xs text-slate-500">Over planned time</div>
+                  </div>
+                  <div>
+                    <div className="text-2xl font-bold text-accent-blue">1</div>
+                    <div className="text-xs text-slate-500">Confusion moment</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="max-w-4xl mx-auto mt-12 text-center">
+              <p className="text-lg text-slate-600 leading-relaxed">
+                <span className="font-semibold text-slate-900">Never wonder "did we finish that?" again.</span> See exactly what you covered, what took too long, where students got confused, and where to start tomorrow.
+              </p>
+            </div>
+          </div>
+
+          {/* Three Key Insights from Time Map */}
+          <div className="space-y-24 mb-32">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                From your time map, you get three key insights
+              </h2>
+              <p className="text-lg text-slate-600">
+                Know exactly what happened—so you can act on it tomorrow.
+              </p>
+            </div>
+
+            {/* Insight 1 - Confusion moments */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-pink bg-pastel-pink rounded-full">
+                  Confusion moments
+                </div>
+                <h3 className="text-3xl font-bold text-slate-900 mb-4">
+                  See exactly where students got lost
+                </h3>
+                <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                  Top 3 confusion moments with timestamps, clarifying explanations, and how many students were affected. Stop guessing what to reteach.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-pink flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Pinpoints exact moments students got confused</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-pink flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Shows student questions and misconceptions</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-pink flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Suggests clarifying explanations</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-gradient-to-br from-pastel-pink to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-4">Top 3 Confusion Moments</div>
+                  <div className="space-y-4">
+                    <div className="p-4 bg-pastel-pink/30 rounded-lg border border-accent-pink/20">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="font-semibold text-slate-900">Mole ratio calculation</div>
+                        <div className="text-xs text-slate-500">18:15</div>
+                      </div>
+                      <div className="text-sm text-slate-600 mb-2">8 students asked variants of "how do we know which coefficient to use?"</div>
+                      <div className="text-xs text-accent-pink font-medium">💡 Suggested clarification: Coefficients come from the balanced equation...</div>
+                    </div>
+                    <div className="p-4 bg-slate-50 rounded-lg">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="font-semibold text-slate-900">Excess vs limiting reagent</div>
+                        <div className="text-xs text-slate-500">21:30</div>
+                      </div>
+                      <div className="text-sm text-slate-600">3 students confused terminology</div>
+                    </div>
+                    <div className="p-4 bg-slate-50 rounded-lg">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="font-semibold text-slate-900">Unit conversion</div>
+                        <div className="text-xs text-slate-500">38:45</div>
+                      </div>
+                      <div className="text-sm text-slate-600">2 students mixing up grams and moles</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Insight 2 - Where I left off */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="lg:order-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-purple bg-pastel-purple rounded-full">
+                  Where I left off
+                </div>
+                <h3 className="text-3xl font-bold text-slate-900 mb-4">
+                  Track progress across all sections
+                </h3>
+                <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                  Teaching three AP Bio classes? Know exactly where each section is—which objectives you've met, what needs reteaching, and where to start tomorrow.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-purple flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Perfect for teaching duplicate courses</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-purple flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Tracks objective completion per section</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-purple flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Never wonder "where did we leave off?"</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="lg:order-1 bg-gradient-to-br from-pastel-purple to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-4">AP Chemistry Progress</div>
+                  <div className="space-y-4">
+                    <div className="p-4 bg-pastel-purple/30 rounded-lg border border-accent-purple/20">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="font-semibold text-slate-900">Period 3</div>
+                        <div className="text-xs bg-accent-purple/20 text-accent-purple px-2 py-1 rounded-full font-medium">Ahead</div>
+                      </div>
+                      <div className="text-sm text-slate-600 mb-2">Finished 4.2 • Ready for 4.3 tomorrow</div>
+                      <div className="text-xs text-slate-500">Last class: Limiting reagents lab</div>
+                    </div>
+                    <div className="p-4 bg-slate-50 rounded-lg">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="font-semibold text-slate-900">Period 5</div>
+                        <div className="text-xs bg-slate-200 text-slate-600 px-2 py-1 rounded-full font-medium">On track</div>
+                      </div>
+                      <div className="text-sm text-slate-600 mb-2">Finished 4.1 • Start 4.2 tomorrow</div>
+                      <div className="text-xs text-slate-500">Last class: Stoichiometry intro</div>
+                    </div>
+                    <div className="p-4 bg-slate-50 rounded-lg">
+                      <div className="flex items-center justify-between mb-2">
+                        <div className="font-semibold text-slate-900">Period 7</div>
+                        <div className="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-full font-medium">Behind</div>
+                      </div>
+                      <div className="text-sm text-slate-600 mb-2">Mid-4.1 • Reteach mole ratios, then continue</div>
+                      <div className="text-xs text-slate-500">Last class: Mole concept review</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Insight 3 - Summary & Recap */}
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-blue bg-pastel-blue rounded-full">
-                  10-minute reteach
+                  Summary & recap
                 </div>
                 <h3 className="text-3xl font-bold text-slate-900 mb-4">
-                  Targeted mini-lesson for tomorrow
+                  What you actually covered—not what you planned
                 </h3>
                 <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                  Not "restart the whole concept." A 10-minute mini-lesson grounded in what actually confused students—with two options, block-schedule aware, citing objectives and timestamps.
+                  A summary of what happened in class, aligned to what you actually taught (not your lesson plan). Perfect for absent students, parent communication, or starting tomorrow's class.
                 </p>
                 <ul className="space-y-3">
                   <li className="flex items-start gap-3">
                     <svg className="w-6 h-6 text-accent-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-slate-700">Saves 20-30 minutes of class time per reteach</span>
+                    <span className="text-slate-700">Reflects what actually happened, not the plan</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <svg className="w-6 h-6 text-accent-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-slate-700">Pinpoints exact misconceptions from student questions</span>
+                    <span className="text-slate-700">Share with students or parents in one click</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <svg className="w-6 h-6 text-accent-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
-                    <span className="text-slate-700">Two teaching approaches to choose from</span>
+                    <span className="text-slate-700">Helps absent students catch up quickly</span>
                   </li>
                 </ul>
               </div>
               <div className="bg-gradient-to-br from-pastel-blue to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
                 <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Tomorrow's Reteach Plan</div>
-                  <div className="text-sm text-slate-900 font-medium mb-2">Limiting Reagent Confusion (8 students)</div>
-                  <div className="text-sm text-slate-600 leading-relaxed">
-                    Students confused stoichiometry → mole ratio at 32:15. Mini-lesson: Start with the sandwich analogy, then work through Example 3 with think-pair-share...
-                  </div>
-                  <div className="mt-4 pt-4 border-t border-slate-100">
-                    <div className="text-xs text-slate-500">Option A: Worked example • Option B: Discovery approach</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Feature 2 - Exit ticket */}
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="lg:order-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-pink bg-pastel-pink rounded-full">
-                  Exit tickets
-                </div>
-                <h3 className="text-3xl font-bold text-slate-900 mb-4">
-                  5 questions that actually run
-                </h3>
-                <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                  Aligned to what you taught today. Answer key + misconception mapping. Real-time or next-day warmup. AP/IB exam-style rigor.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-accent-pink flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-slate-700">Generated in seconds after class</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-accent-pink flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-slate-700">Includes answer key and common mistakes</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-accent-pink flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-slate-700">Formative assessment that actually happens</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="lg:order-1 bg-gradient-to-br from-pastel-pink to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Exit Ticket • Period 3 • Oct 12</div>
-                  <div className="space-y-3 text-sm">
-                    <div className="p-3 bg-slate-50 rounded-lg">
-                      <div className="font-medium text-slate-900 mb-1">1. Calculate the limiting reagent when...</div>
-                      <div className="text-xs text-slate-500">Aligned to today's objective 4.2</div>
-                    </div>
-                    <div className="p-3 bg-slate-50 rounded-lg">
-                      <div className="font-medium text-slate-900 mb-1">2. Explain why the mole ratio...</div>
-                      <div className="text-xs text-slate-500">Tests understanding of stoichiometry</div>
-                    </div>
-                    <div className="text-xs text-slate-500 pt-2">+ 3 more questions • Answer key included</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Feature 3 - Student recap */}
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-purple bg-pastel-purple rounded-full">
-                  Student recap
-                </div>
-                <h3 className="text-3xl font-bold text-slate-900 mb-4">
-                  Ready to share in one click
-                </h3>
-                <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                  Key objectives, vocab, what to study, 3 practice prompts, textbook page refs. Students know exactly what to review.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-accent-purple flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-slate-700">Reduces "I don't know what to study" questions</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-accent-purple flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-slate-700">Specific to what happened in your class</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-accent-purple flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-slate-700">Low effort, high perceived value for parents</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="bg-gradient-to-br from-pastel-purple to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Today's Class Recap</div>
+                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Today's Class Summary</div>
                   <div className="space-y-4 text-sm">
                     <div>
-                      <div className="font-semibold text-slate-900 mb-1">Objectives</div>
-                      <div className="text-slate-600">• Calculate limiting reagent in reactions<br />• Explain stoichiometry with mole ratios</div>
+                      <div className="font-semibold text-slate-900 mb-2">What we covered</div>
+                      <div className="text-slate-600 leading-relaxed">
+                        Limiting reagents and excess reagents in chemical reactions. We worked through the mole ratio method and practiced with example problems.
+                      </div>
                     </div>
                     <div>
-                      <div className="font-semibold text-slate-900 mb-1">Key vocabulary</div>
-                      <div className="text-slate-600">Limiting reagent, excess reagent, mole ratio</div>
+                      <div className="font-semibold text-slate-900 mb-1">Objectives met</div>
+                      <div className="text-slate-600">• Calculate limiting reagent (4.2)<br />• Explain stoichiometry with mole ratios (4.2)</div>
                     </div>
                     <div>
-                      <div className="font-semibold text-slate-900 mb-1">Study</div>
-                      <div className="text-slate-600">Textbook p.142-145 • Practice problems 3-7</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Feature 4 - Coaching */}
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              <div className="lg:order-2">
-                <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-yellow bg-pastel-yellow rounded-full">
-                  Coaching insight
-                </div>
-                <h3 className="text-3xl font-bold text-slate-900 mb-4">
-                  One insight, always kind
-                </h3>
-                <p className="text-lg text-slate-600 mb-6 leading-relaxed">
-                  Opt-in, evidence-based, glow + grow. One bite-sized insight per lesson—never judgment, always actionable.
-                </p>
-                <ul className="space-y-3">
-                  <li className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-accent-yellow flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-slate-700">Cites timestamps and student responses</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-accent-yellow flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-slate-700">Feels like a supportive colleague, not an evaluator</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <svg className="w-6 h-6 text-accent-yellow flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="text-slate-700">Teacher-only, completely optional</span>
-                  </li>
-                </ul>
-              </div>
-              <div className="lg:order-1 bg-gradient-to-br from-pastel-yellow to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Today's Insight</div>
-                  <div className="space-y-4 text-sm">
-                    <div>
-                      <div className="font-semibold text-accent-yellow mb-1">✨ Glow</div>
-                      <div className="text-slate-700">Your analogy at 23:15 (limiting reagent = sandwich) landed—3 students referenced it later.</div>
+                      <div className="font-semibold text-slate-900 mb-1">Key vocab</div>
+                      <div className="text-slate-600">Limiting reagent, excess reagent, mole ratio, stoichiometry</div>
                     </div>
                     <div>
-                      <div className="font-semibold text-accent-blue mb-1">→ Grow</div>
-                      <div className="text-slate-700">Lab discussion went 12 min over. Consider pre-assigning roles or using a timer.</div>
+                      <div className="font-semibold text-slate-900 mb-1">For next class</div>
+                      <div className="text-slate-600">Review textbook p.142-145 • Practice problems 3-7</div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Action Items from Insights */}
+          <div className="mb-32">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+                Then you get classroom-ready action items
+              </h2>
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto">
+                Because insights are useless without tools. ClassPal turns what happened into what to do next.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {/* Action 1 - Reteach */}
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+                <div className="w-12 h-12 bg-gradient-to-br from-accent-blue to-accent-blue/60 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                  1
+                </div>
+                <h4 className="text-lg font-bold text-slate-900 mb-2">10-min reteach plan</h4>
+                <p className="text-sm text-slate-600 mb-3">
+                  Targeted mini-lesson for tomorrow based on confusion moments. Two options, specific to what students missed.
+                </p>
+                <div className="text-xs text-slate-500 bg-pastel-blue px-2 py-1 rounded inline-block">
+                  Saves 20-30 min per reteach
+                </div>
+              </div>
+
+              {/* Action 2 - Exit ticket */}
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+                <div className="w-12 h-12 bg-gradient-to-br from-accent-pink to-accent-pink/60 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                  2
+                </div>
+                <h4 className="text-lg font-bold text-slate-900 mb-2">Exit ticket</h4>
+                <p className="text-sm text-slate-600 mb-3">
+                  5 questions aligned to what you actually taught. Answer key + misconception mapping. AP/IB exam-style.
+                </p>
+                <div className="text-xs text-slate-500 bg-pastel-pink px-2 py-1 rounded inline-block">
+                  Ready in seconds
+                </div>
+              </div>
+
+              {/* Action 3 - Coaching */}
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+                <div className="w-12 h-12 bg-gradient-to-br from-accent-yellow to-accent-yellow/60 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                  3
+                </div>
+                <h4 className="text-lg font-bold text-slate-900 mb-2">Coaching insight</h4>
+                <p className="text-sm text-slate-600 mb-3">
+                  One bite-sized insight per lesson (opt-in). Glow + grow, evidence-based, cites timestamps. Never judgment.
+                </p>
+                <div className="text-xs text-slate-500 bg-pastel-yellow px-2 py-1 rounded inline-block">
+                  Always kind, always actionable
+                </div>
+              </div>
+
+              {/* Action 4 - Assignment estimator */}
+              <div className="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-lg transition">
+                <div className="w-12 h-12 bg-gradient-to-br from-accent-purple to-accent-purple/60 rounded-xl mb-4 flex items-center justify-center text-white font-bold text-xl shadow-md">
+                  4
+                </div>
+                <h4 className="text-lg font-bold text-slate-900 mb-2">Assignment time estimator</h4>
+                <p className="text-sm text-slate-600 mb-3">
+                  Estimate how long homework takes students (p25/p50/p75). Avoid workload overload across classes.
+                </p>
+                <div className="text-xs text-slate-500 bg-pastel-purple px-2 py-1 rounded inline-block">
+                  Student workload guardrails
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -342,10 +524,10 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6">
-              The easiest daily tool you'll use
+              Stop guessing. Start knowing.
             </h2>
             <p className="text-xl text-slate-600">
-              Teach. Get outputs. Use them tomorrow.
+              See what happened. Act on it tomorrow.
             </p>
           </div>
 
@@ -364,9 +546,9 @@ export default function App() {
               <div className="w-16 h-16 bg-gradient-to-br from-accent-purple to-accent-pink rounded-2xl mx-auto mb-6 flex items-center justify-center text-white font-bold text-2xl shadow-lg">
                 2
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Get your outputs</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">See your time map</h3>
               <p className="text-slate-600">
-                Reteach, exit ticket, student recap, coaching—ready in under 60 seconds.
+                Minute-by-minute breakdown. Confusion moments. Where you left off. What actually happened.
               </p>
             </div>
 
@@ -374,9 +556,9 @@ export default function App() {
               <div className="w-16 h-16 bg-gradient-to-br from-accent-pink to-accent-yellow rounded-2xl mx-auto mb-6 flex items-center justify-center text-white font-bold text-2xl shadow-lg">
                 3
               </div>
-              <h3 className="text-xl font-bold text-slate-900 mb-3">Use them tomorrow</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-3">Use the tools</h3>
               <p className="text-slate-600">
-                Run the reteach. Share the recap. Iterate and improve.
+                Reteach plan, exit ticket, student recap, coaching insight—ready instantly.
               </p>
             </div>
           </div>
@@ -388,42 +570,42 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6">
-              Plus everything else you need
+              And so much more
             </h2>
             <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-              ClassPal grows with you—from daily outputs to workload management and professional development.
+              ClassPal includes everything you need to understand and improve your teaching.
             </p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             <div className="bg-white p-6 rounded-xl border border-slate-200 hover:border-accent-blue/30 hover:shadow-md transition">
-              <h4 className="font-semibold text-slate-900 mb-2 text-lg">Top 3 confusion moments</h4>
-              <p className="text-sm text-slate-600">Pinpoints where students got lost with clarifying explanations and timestamps.</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-xl border border-slate-200 hover:border-accent-blue/30 hover:shadow-md transition">
               <h4 className="font-semibold text-slate-900 mb-2 text-lg">Auto-generated homework</h4>
-              <p className="text-sm text-slate-600">AP/IB-aligned questions created from your lesson in seconds.</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-xl border border-slate-200 hover:border-accent-blue/30 hover:shadow-md transition">
-              <h4 className="font-semibold text-slate-900 mb-2 text-lg">Assignment time estimator</h4>
-              <p className="text-sm text-slate-600">Estimate how long assignments take students—avoid workload overload.</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-xl border border-slate-200 hover:border-accent-blue/30 hover:shadow-md transition">
-              <h4 className="font-semibold text-slate-900 mb-2 text-lg">Where I left off tracker</h4>
-              <p className="text-sm text-slate-600">Track exactly where you are in each class—perfect for teaching duplicates.</p>
-            </div>
-
-            <div className="bg-white p-6 rounded-xl border border-slate-200 hover:border-accent-blue/30 hover:shadow-md transition">
-              <h4 className="font-semibold text-slate-900 mb-2 text-lg">Time map & pacing</h4>
-              <p className="text-sm text-slate-600">See where class time went with minute-by-minute breakdowns.</p>
+              <p className="text-sm text-slate-600">AP/IB-aligned questions created from your lesson in seconds. Standards-aligned, exam-style.</p>
             </div>
 
             <div className="bg-white p-6 rounded-xl border border-slate-200 hover:border-accent-blue/30 hover:shadow-md transition">
               <h4 className="font-semibold text-slate-900 mb-2 text-lg">Talk ratio analytics</h4>
-              <p className="text-sm text-slate-600">Track teacher vs student talk time to boost engagement.</p>
+              <p className="text-sm text-slate-600">Track teacher vs student talk time over time. Boost engagement with data.</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl border border-slate-200 hover:border-accent-blue/30 hover:shadow-md transition">
+              <h4 className="font-semibold text-slate-900 mb-2 text-lg">Pacing vs plan</h4>
+              <p className="text-sm text-slate-600">See if you're ahead or behind your lesson plan—and why.</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl border border-slate-200 hover:border-accent-blue/30 hover:shadow-md transition">
+              <h4 className="font-semibold text-slate-900 mb-2 text-lg">Objective tracker</h4>
+              <p className="text-sm text-slate-600">Track which objectives you've met, which need reteaching, per section.</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl border border-slate-200 hover:border-accent-blue/30 hover:shadow-md transition">
+              <h4 className="font-semibold text-slate-900 mb-2 text-lg">Teacher improvement trends</h4>
+              <p className="text-sm text-slate-600">See how your teaching improves over time—pacing, clarity, student engagement.</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-xl border border-slate-200 hover:border-accent-blue/30 hover:shadow-md transition">
+              <h4 className="font-semibold text-slate-900 mb-2 text-lg">PD export (teacher-owned)</h4>
+              <p className="text-sm text-slate-600">Export data for professional development—no admin access by default.</p>
             </div>
           </div>
         </div>
@@ -499,9 +681,14 @@ export default function App() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="bg-gradient-to-br from-slate-50 to-white p-12 rounded-3xl border border-slate-200 shadow-sm">
             <blockquote className="text-2xl sm:text-3xl font-medium text-slate-900 mb-6 leading-relaxed">
-              "If I could press a button after class and see where most of my kids got lost—and why—I'd make that part of my daily routine."
+              "I teach three sections of AP Bio. I never know if Period 3 is ahead or Period 5 is behind. I just guess and hope."
             </blockquote>
             <div className="text-slate-600 font-medium">AP Biology Teacher</div>
+            <div className="mt-6 pt-6 border-t border-slate-200">
+              <p className="text-lg text-slate-600">
+                <span className="font-semibold text-slate-900">ClassPal shows you exactly where each section is.</span> No more guessing.
+              </p>
+            </div>
           </div>
         </div>
       </section>
