@@ -104,7 +104,7 @@ export default function App() {
       <section className="border-y border-slate-100 bg-slate-50/50 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-sm text-slate-500">
-            Built with AP Biology, AP Chemistry, and IB teachers—for teachers
+            Designed with real teachers, for real classrooms
           </p>
         </div>
       </section>
