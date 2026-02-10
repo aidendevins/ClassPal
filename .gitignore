@@ -40,6 +40,10 @@ coverage/
 .cache/
 .temp/
 
+# Uploads (temporary files)
+uploads/
+**/uploads/
+
 # Large media
 *.mp4
 *.mov
