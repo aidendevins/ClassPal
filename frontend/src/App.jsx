@@ -110,23 +110,68 @@ export default function App() {
       </section>
 
       {/* Main Problem */}
-      <section className="py-20 sm:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-            Every class generates insights that could make tomorrow better.
-            <br />
-            <span className="text-slate-600">Imagine using them all.</span>
-          </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Who was confused at 18:15. What took 10 min too long. Where Period 3 left off vs Period 5. What students need reteaching. One insight makes tomorrow 5% better. 180 days of insights? That's a different teacher. ClassPal captures them all—so you and your students improve every single day.
-          </p>
+      <section className="relative py-20 sm:py-32 overflow-hidden">
+        {/* Decorative gradients */}
+        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-pastel-blue to-transparent opacity-30 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-pastel-pink to-transparent opacity-30 blur-3xl pointer-events-none" />
+        
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
+              Every class generates insights that could make tomorrow better.
+              <br />
+              <span className="bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink bg-clip-text text-transparent">
+                Imagine using them all.
+              </span>
+            </h2>
+          </div>
+          
+          <div className="bg-white/80 backdrop-blur-sm rounded-3xl border border-slate-200 shadow-xl p-8 sm:p-12">
+            <div className="grid sm:grid-cols-2 gap-6 mb-8">
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 mt-2 rounded-full bg-accent-pink flex-shrink-0" />
+                <p className="text-lg text-slate-700">Who was confused at 18:15</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 mt-2 rounded-full bg-accent-blue flex-shrink-0" />
+                <p className="text-lg text-slate-700">What took 10 min too long</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 mt-2 rounded-full bg-accent-purple flex-shrink-0" />
+                <p className="text-lg text-slate-700">Where Period 3 left off vs Period 5</p>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="w-2 h-2 mt-2 rounded-full bg-accent-yellow flex-shrink-0" />
+                <p className="text-lg text-slate-700">What students need reteaching</p>
+              </div>
+            </div>
+            
+            <div className="pt-8 border-t border-slate-200 text-center">
+              <p className="text-xl sm:text-2xl font-medium text-slate-900 mb-4">
+                One insight makes tomorrow 5% better.
+                <br />
+                <span className="text-slate-600">180 days of insights? That's a different teacher.</span>
+              </p>
+              <p className="text-lg text-slate-600">
+                ClassPal captures them all—so you and your students improve every single day.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Four core insights */}
-      <section className="py-20 sm:py-32 bg-gradient-to-b from-white via-pastel-blue/20 to-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 sm:py-32 bg-gradient-to-b from-white via-pastel-yellow/30 to-white overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-20 right-0 w-72 h-72 bg-gradient-to-br from-pastel-purple to-transparent opacity-20 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-20 left-0 w-72 h-72 bg-gradient-to-tr from-pastel-blue to-transparent opacity-20 blur-3xl pointer-events-none" />
+        
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-white/80 backdrop-blur rounded-full border border-slate-200 shadow-sm">
+              <span className="w-2 h-2 bg-gradient-to-r from-accent-blue to-accent-pink rounded-full" />
+              <span className="text-sm font-medium text-slate-700">Four core insights</span>
+            </div>
             <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6">
               After each class, you get what you'd create—if you had the time
             </h2>
@@ -138,8 +183,9 @@ export default function App() {
           {/* Four Equal Insights */}
           <div className="grid md:grid-cols-2 gap-8 mb-20">
             {/* 1. Confusion Moments */}
-            <div className="bg-gradient-to-br from-pastel-pink to-white p-8 rounded-2xl border border-slate-200 shadow-lg">
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-pink bg-white rounded-full border border-accent-pink/20">
+            <div className="group relative bg-white p-8 rounded-2xl border-2 border-accent-pink/20 hover:border-accent-pink/40 shadow-lg hover:shadow-xl transition-all">
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-accent-pink to-accent-pink/60 rounded-xl opacity-20 group-hover:opacity-30 transition" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-pink bg-pastel-pink/50 rounded-full border border-accent-pink/30">
                 Confusion moments
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-3">
@@ -148,16 +194,17 @@ export default function App() {
               <p className="text-slate-600 mb-6">
                 You'd analyze every student question if you had time. ClassPal does it for you—showing top 3 confusion moments with timestamps and clarifications.
               </p>
-              <div className="bg-white rounded-lg p-4 border border-slate-200">
-                <div className="text-xs font-semibold text-slate-500 mb-2">TOP CONFUSION</div>
+              <div className="bg-pastel-pink/30 rounded-xl p-4 border border-accent-pink/20">
+                <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">TOP CONFUSION</div>
                 <div className="text-sm font-medium text-slate-900 mb-1">Mole ratio calculation at 18:15</div>
                 <div className="text-xs text-slate-600">8 students asked "which coefficient to use?"</div>
               </div>
             </div>
 
             {/* 2. Time Map */}
-            <div className="bg-gradient-to-br from-pastel-blue to-white p-8 rounded-2xl border border-slate-200 shadow-lg">
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-blue bg-white rounded-full border border-accent-blue/20">
+            <div className="group relative bg-white p-8 rounded-2xl border-2 border-accent-blue/20 hover:border-accent-blue/40 shadow-lg hover:shadow-xl transition-all">
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-accent-blue to-accent-blue/60 rounded-xl opacity-20 group-hover:opacity-30 transition" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-blue bg-pastel-blue/50 rounded-full border border-accent-blue/30">
                 Time map
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-3">
@@ -166,7 +213,7 @@ export default function App() {
               <p className="text-slate-600 mb-6">
                 You'd track pacing perfectly if you could. ClassPal shows minute-by-minute what took too long, what got skipped, and why.
               </p>
-              <div className="bg-white rounded-lg p-4 border border-slate-200 space-y-2">
+              <div className="bg-pastel-blue/30 rounded-xl p-4 border border-accent-blue/20 space-y-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-slate-600">Limiting reagents</span>
                   <span className="font-medium text-accent-pink">+6 min over</span>
@@ -183,8 +230,9 @@ export default function App() {
             </div>
 
             {/* 3. Where I Left Off */}
-            <div className="bg-gradient-to-br from-pastel-purple to-white p-8 rounded-2xl border border-slate-200 shadow-lg">
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-purple bg-white rounded-full border border-accent-purple/20">
+            <div className="group relative bg-white p-8 rounded-2xl border-2 border-accent-purple/20 hover:border-accent-purple/40 shadow-lg hover:shadow-xl transition-all">
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-accent-purple to-accent-purple/60 rounded-xl opacity-20 group-hover:opacity-30 transition" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-purple bg-pastel-purple/50 rounded-full border border-accent-purple/30">
                 Where I left off
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-3">
@@ -193,7 +241,7 @@ export default function App() {
               <p className="text-slate-600 mb-6">
                 Teaching three AP Bio? You'd track each section perfectly if you could remember. ClassPal remembers for you.
               </p>
-              <div className="bg-white rounded-lg p-4 border border-slate-200 space-y-2">
+              <div className="bg-pastel-purple/30 rounded-xl p-4 border border-accent-purple/20 space-y-2">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-slate-900 font-medium">Period 3</span>
                   <span className="text-accent-purple">Finished 4.2 ✓</span>
@@ -210,8 +258,9 @@ export default function App() {
             </div>
 
             {/* 4. Summary & Recap */}
-            <div className="bg-gradient-to-br from-pastel-yellow to-white p-8 rounded-2xl border border-slate-200 shadow-lg">
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-yellow bg-white rounded-full border border-accent-yellow/20">
+            <div className="group relative bg-white p-8 rounded-2xl border-2 border-accent-yellow/20 hover:border-accent-yellow/40 shadow-lg hover:shadow-xl transition-all">
+              <div className="absolute -top-3 -right-3 w-12 h-12 bg-gradient-to-br from-accent-yellow to-accent-yellow/60 rounded-xl opacity-20 group-hover:opacity-30 transition" />
+              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-yellow bg-pastel-yellow/50 rounded-full border border-accent-yellow/30">
                 Summary & recap
               </div>
               <h3 className="text-2xl font-bold text-slate-900 mb-3">
@@ -220,7 +269,7 @@ export default function App() {
               <p className="text-slate-600 mb-6">
                 You'd write a recap for students and parents if you had time. ClassPal writes it based on what actually happened (not your plan).
               </p>
-              <div className="bg-white rounded-lg p-4 border border-slate-200 text-xs space-y-2">
+              <div className="bg-pastel-yellow/30 rounded-xl p-4 border border-accent-yellow/20 text-xs space-y-2">
                 <div><span className="font-medium text-slate-900">Covered:</span> Limiting reagents, stoichiometry</div>
                 <div><span className="font-medium text-slate-900">Objectives met:</span> 4.2 (calculate limiting reagent)</div>
                 <div><span className="font-medium text-slate-900">Review:</span> Textbook p.142-145</div>
