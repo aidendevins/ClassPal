@@ -143,95 +143,191 @@ export default function App() {
             </p>
           </div>
 
-          {/* Four Equal Insights */}
-          <div className="grid md:grid-cols-2 gap-8 mb-20">
+          {/* Four Insights - Horizontal Layout */}
+          <div className="space-y-24">
             {/* 1. Confusion Moments */}
-            <div className="bg-gradient-to-br from-pastel-pink to-white p-8 rounded-2xl border border-slate-200 shadow-lg">
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-pink bg-white rounded-full border border-accent-pink/20">
-                Confusion moments
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-pink bg-pastel-pink rounded-full">
+                  Confusion moments
+                </div>
+                <h3 className="text-3xl font-bold text-slate-900 mb-4">
+                  Where students got lost—and why
+                </h3>
+                <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                  You'd analyze every student question if you had time. ClassPal does it for you—showing top 3 confusion moments with timestamps and clarifications.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-pink flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Pinpoints exact moments students got confused</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-pink flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Shows student questions and misconceptions</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-pink flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Suggests clarifying explanations</span>
+                  </li>
+                </ul>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                Where students got lost—and why
-              </h3>
-              <p className="text-slate-600 mb-6">
-                You'd analyze every student question if you had time. ClassPal does it for you—showing top 3 confusion moments with timestamps and clarifications.
-              </p>
-              <div className="bg-white rounded-lg p-4 border border-slate-200">
-                <div className="text-xs font-semibold text-slate-500 mb-2">TOP CONFUSION</div>
-                <div className="text-sm font-medium text-slate-900 mb-1">Mole ratio calculation at 18:15</div>
-                <div className="text-xs text-slate-600">8 students asked "which coefficient to use?"</div>
+              <div className="bg-gradient-to-br from-pastel-pink to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
+                <div className="bg-white rounded-lg p-6 shadow-sm">
+                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">TOP CONFUSION</div>
+                  <div className="text-sm font-medium text-slate-900 mb-1">Mole ratio calculation at 18:15</div>
+                  <div className="text-xs text-slate-600">8 students asked "which coefficient to use?"</div>
+                </div>
               </div>
             </div>
 
             {/* 2. Time Map */}
-            <div className="bg-gradient-to-br from-pastel-blue to-white p-8 rounded-2xl border border-slate-200 shadow-lg">
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-blue bg-white rounded-full border border-accent-blue/20">
-                Time map
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="lg:order-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-blue bg-pastel-blue rounded-full">
+                  Time map
+                </div>
+                <h3 className="text-3xl font-bold text-slate-900 mb-4">
+                  What you covered vs what you planned
+                </h3>
+                <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                  You'd track pacing perfectly if you could. ClassPal shows minute-by-minute what took too long, what got skipped, and why.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Minute-by-minute breakdown of class time</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Shows what took too long and what got skipped</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-blue flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Identifies off-track segments</span>
+                  </li>
+                </ul>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                What you covered vs what you planned
-              </h3>
-              <p className="text-slate-600 mb-6">
-                You'd track pacing perfectly if you could. ClassPal shows minute-by-minute what took too long, what got skipped, and why.
-              </p>
-              <div className="bg-white rounded-lg p-4 border border-slate-200 space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-600">Limiting reagents</span>
-                  <span className="font-medium text-accent-pink">+6 min over</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-600">Lab setup</span>
-                  <span className="font-medium text-green-600">-2 min under</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-600">Fire drill</span>
-                  <span className="font-medium text-slate-400">5 min (unplanned)</span>
+              <div className="lg:order-1 bg-gradient-to-br from-pastel-blue to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
+                <div className="bg-white rounded-lg p-6 shadow-sm space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-slate-600">Limiting reagents</span>
+                    <span className="font-medium text-accent-pink">+6 min over</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-slate-600">Lab setup</span>
+                    <span className="font-medium text-green-600">-2 min under</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-slate-600">Fire drill</span>
+                    <span className="font-medium text-slate-400">5 min (unplanned)</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* 3. Where I Left Off */}
-            <div className="bg-gradient-to-br from-pastel-purple to-white p-8 rounded-2xl border border-slate-200 shadow-lg">
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-purple bg-white rounded-full border border-accent-purple/20">
-                Where I left off
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-purple bg-pastel-purple rounded-full">
+                  Where I left off
+                </div>
+                <h3 className="text-3xl font-bold text-slate-900 mb-4">
+                  Progress across all your sections
+                </h3>
+                <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                  Teaching three AP Bio? You'd track each section perfectly if you could remember. ClassPal remembers for you.
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-purple flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Perfect for teaching duplicate courses</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-purple flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Tracks objective completion per section</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-purple flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Never wonder "where did we leave off?"</span>
+                  </li>
+                </ul>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                Progress across all your sections
-              </h3>
-              <p className="text-slate-600 mb-6">
-                Teaching three AP Bio? You'd track each section perfectly if you could remember. ClassPal remembers for you.
-              </p>
-              <div className="bg-white rounded-lg p-4 border border-slate-200 space-y-2">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-900 font-medium">Period 3</span>
-                  <span className="text-accent-purple">Finished 4.2 ✓</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-900 font-medium">Period 5</span>
-                  <span className="text-slate-600">Mid-4.1</span>
-                </div>
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-slate-900 font-medium">Period 7</span>
-                  <span className="text-amber-600">Behind - needs reteach</span>
+              <div className="bg-gradient-to-br from-pastel-purple to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
+                <div className="bg-white rounded-lg p-6 shadow-sm space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-slate-900 font-medium">Period 3</span>
+                    <span className="text-accent-purple">Finished 4.2 ✓</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-slate-900 font-medium">Period 5</span>
+                    <span className="text-slate-600">Mid-4.1</span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="text-slate-900 font-medium">Period 7</span>
+                    <span className="text-amber-600">Behind - needs reteach</span>
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* 4. Summary & Recap */}
-            <div className="bg-gradient-to-br from-pastel-yellow to-white p-8 rounded-2xl border border-slate-200 shadow-lg">
-              <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-yellow bg-white rounded-full border border-accent-yellow/20">
-                Summary & recap
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="lg:order-2">
+                <div className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-sm font-medium text-accent-yellow bg-pastel-yellow rounded-full">
+                  Summary & recap
+                </div>
+                <h3 className="text-3xl font-bold text-slate-900 mb-4">
+                  What you actually taught today
+                </h3>
+                <p className="text-lg text-slate-600 mb-6 leading-relaxed">
+                  You'd write a recap for students and parents if you had time. ClassPal writes it based on what actually happened (not your plan).
+                </p>
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-yellow flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Reflects what actually happened, not the plan</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-yellow flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Share with students or parents in one click</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <svg className="w-6 h-6 text-accent-yellow flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-slate-700">Helps absent students catch up quickly</span>
+                  </li>
+                </ul>
               </div>
-              <h3 className="text-2xl font-bold text-slate-900 mb-3">
-                What you actually taught today
-              </h3>
-              <p className="text-slate-600 mb-6">
-                You'd write a recap for students and parents if you had time. ClassPal writes it based on what actually happened (not your plan).
-              </p>
-              <div className="bg-white rounded-lg p-4 border border-slate-200 text-xs space-y-2">
-                <div><span className="font-medium text-slate-900">Covered:</span> Limiting reagents, stoichiometry</div>
-                <div><span className="font-medium text-slate-900">Objectives met:</span> 4.2 (calculate limiting reagent)</div>
-                <div><span className="font-medium text-slate-900">Review:</span> Textbook p.142-145</div>
+              <div className="lg:order-1 bg-gradient-to-br from-pastel-yellow to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
+                <div className="bg-white rounded-lg p-6 shadow-sm text-xs space-y-2">
+                  <div><span className="font-medium text-slate-900">Covered:</span> Limiting reagents, stoichiometry</div>
+                  <div><span className="font-medium text-slate-900">Objectives met:</span> 4.2 (calculate limiting reagent)</div>
+                  <div><span className="font-medium text-slate-900">Review:</span> Textbook p.142-145</div>
+                </div>
               </div>
             </div>
           </div>
