@@ -84,7 +84,7 @@ export default function App() {
             </span>
           </h1>
           <p className="text-xl sm:text-2xl text-slate-600 mb-10 leading-relaxed max-w-3xl mx-auto">
-            The teacher copilot that handles the busy work—so you can focus on what you do best: teaching, improving, and helping students grow.
+            The teacher copilot that makes you sharper, students stronger, and teaching easier—with data-driven insights and classroom-ready tools.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-4">
             <a
