@@ -110,15 +110,20 @@ export default function App() {
       </section>
 
       {/* Main Problem */}
-      <section className="py-20 sm:py-24">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 leading-tight">
+      <section className="py-20 sm:py-28 relative overflow-hidden">
+        {/* Artsy background splashes */}
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-pastel-blue/15 to-white pointer-events-none" />
+        <div className="absolute top-1/4 -left-32 w-[480px] h-[480px] bg-gradient-to-br from-pastel-pink/35 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 -right-32 w-[400px] h-[400px] bg-gradient-to-bl from-pastel-yellow/35 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[320px] h-[320px] bg-gradient-to-r from-pastel-purple/25 to-transparent rounded-full blur-3xl pointer-events-none" />
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight">
             Every class generates insights that could make tomorrow better.
             <br />
             <span className="text-slate-600">Imagine using them all.</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-            Who was confused at 18:15. What took 10 min too long. Where Period 3 left off vs Period 5. What students need reteaching. One insight makes tomorrow 5% better. 180 days of insights? That's a different teacher. ClassPal captures them all—so you and your students improve every single day.
+          <p className="text-xl sm:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            Who was confused at 18:15. What took 10 min too long. Where Period 3 left off vs Period 5. What students need reteaching. One insight makes tomorrow 5% better—and 180 days of insights? That's a different teacher. ClassPal captures them all so you and your students improve every single day.
           </p>
         </div>
       </section>
@@ -144,7 +149,7 @@ export default function App() {
           </div>
 
           {/* Four Insights - Horizontal Layout */}
-          <div className="space-y-24">
+          <div className="space-y-24 mb-32">
             {/* 1. Confusion Moments */}
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <div>
@@ -178,11 +183,47 @@ export default function App() {
                   </li>
                 </ul>
               </div>
-              <div className="bg-gradient-to-br from-pastel-pink to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
-                <div className="bg-white rounded-lg p-6 shadow-sm">
-                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">TOP CONFUSION</div>
-                  <div className="text-sm font-medium text-slate-900 mb-1">Mole ratio calculation at 18:15</div>
-                  <div className="text-xs text-slate-600">8 students asked "which coefficient to use?"</div>
+              <div className="bg-gradient-to-br from-pastel-pink to-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xl">
+                <div className="bg-white rounded-xl p-5 sm:p-7 shadow-md">
+                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-5">TOP 3 CONFUSION MOMENTS</div>
+                  <div className="space-y-4">
+                    {/* Confusion 1 */}
+                    <div className="p-4 sm:p-5 bg-pastel-pink/40 rounded-xl border border-accent-pink/30">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="font-semibold text-slate-900">Mole ratio calculation</div>
+                        <div className="text-xs text-slate-500 flex-shrink-0 ml-2">18:15</div>
+                      </div>
+                      <div className="text-sm text-slate-700 mb-3 leading-relaxed">
+                        <span className="font-semibold text-accent-pink">8 students</span> asked variants of "which coefficient to use?" and "how do we know the ratio?"
+                      </div>
+                      <div className="text-xs text-slate-600 bg-white/80 rounded-lg px-3 py-2.5 border border-slate-200 leading-relaxed">
+                        <span className="font-semibold">💡 Clarification:</span> The coefficients come from the balanced equation. Use them as a ratio: 2 mol H₂ needs 1 mol O₂.
+                      </div>
+                    </div>
+                    
+                    {/* Confusion 2 */}
+                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="font-semibold text-slate-900 text-sm">Excess vs limiting reagent</div>
+                        <div className="text-xs text-slate-500 flex-shrink-0 ml-2">21:30</div>
+                      </div>
+                      <div className="text-sm text-slate-700 mb-1.5">
+                        <span className="font-semibold text-accent-pink">5 students</span> confused the terminology
+                      </div>
+                      <div className="text-xs text-slate-600 italic">Student: "Is the limiting one the one we have more of?"</div>
+                    </div>
+                    
+                    {/* Confusion 3 */}
+                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="font-semibold text-slate-900 text-sm">Converting grams to moles</div>
+                        <div className="text-xs text-slate-500 flex-shrink-0 ml-2">38:45</div>
+                      </div>
+                      <div className="text-sm text-slate-700">
+                        <span className="font-semibold text-accent-pink">3 students</span> dividing instead of multiplying by molar mass
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -220,19 +261,81 @@ export default function App() {
                   </li>
                 </ul>
               </div>
-              <div className="lg:order-1 bg-gradient-to-br from-pastel-blue to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
-                <div className="bg-white rounded-lg p-6 shadow-sm space-y-2">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-600">Limiting reagents</span>
-                    <span className="font-medium text-accent-pink">+6 min over</span>
+              <div className="lg:order-1 bg-gradient-to-br from-pastel-blue to-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xl">
+                <div className="bg-white rounded-xl p-5 sm:p-7 shadow-md">
+                  <div className="flex items-center justify-between mb-5 pb-4 border-b border-slate-100">
+                    <div>
+                      <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Period 3 • AP Chemistry</div>
+                      <div className="font-bold text-slate-900">Today's Time Map</div>
+                    </div>
+                    <div className="text-xs text-slate-600">
+                      <span className="font-semibold">45 min</span> class
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-600">Lab setup</span>
-                    <span className="font-medium text-green-600">-2 min under</span>
+                  
+                  <div className="space-y-3">
+                    {/* Warmup */}
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 bg-gradient-to-r from-green-400 to-green-500 rounded-lg shadow-sm" style={{ width: '11%' }} />
+                      <div className="flex-1">
+                        <div className="font-medium text-slate-900 text-sm">Warmup & Review</div>
+                        <div className="text-xs text-slate-500">5 min • Homework questions</div>
+                      </div>
+                    </div>
+                    
+                    {/* Main topic - over time */}
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 bg-gradient-to-r from-accent-pink to-pink-400 rounded-lg shadow-sm" style={{ width: '40%' }} />
+                      <div className="flex-1">
+                        <div className="font-medium text-slate-900 text-sm flex items-center gap-2">
+                          Limiting Reagents
+                          <span className="text-[10px] bg-accent-pink/20 text-accent-pink px-1.5 py-0.5 rounded-full font-bold">+6 min</span>
+                        </div>
+                        <div className="text-xs text-slate-500">18 min (planned 12) • Obj 4.2</div>
+                      </div>
+                    </div>
+                    
+                    {/* Lab */}
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 bg-gradient-to-r from-accent-blue to-blue-400 rounded-lg shadow-sm" style={{ width: '18%' }} />
+                      <div className="flex-1">
+                        <div className="font-medium text-slate-900 text-sm">Lab Setup & Demo</div>
+                        <div className="text-xs text-slate-500">8 min • Stoichiometry lab</div>
+                      </div>
+                    </div>
+                    
+                    {/* Off-track */}
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 bg-gradient-to-r from-slate-300 to-slate-400 rounded-lg shadow-sm" style={{ width: '11%' }} />
+                      <div className="flex-1">
+                        <div className="font-medium text-slate-600 text-sm">Fire drill (off-track)</div>
+                        <div className="text-xs text-slate-500">5 min • Unplanned</div>
+                      </div>
+                    </div>
+                    
+                    {/* Group practice */}
+                    <div className="flex items-center gap-3">
+                      <div className="h-10 bg-gradient-to-r from-accent-purple to-purple-400 rounded-lg shadow-sm" style={{ width: '20%' }} />
+                      <div className="flex-1">
+                        <div className="font-medium text-slate-900 text-sm">Group Practice</div>
+                        <div className="text-xs text-slate-500">9 min • Problems 1-4</div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-600">Fire drill</span>
-                    <span className="font-medium text-slate-400">5 min (unplanned)</span>
+                  
+                  <div className="mt-6 pt-5 border-t border-slate-100 grid grid-cols-3 gap-4 text-center">
+                    <div>
+                      <div className="text-2xl font-bold text-slate-900">85%</div>
+                      <div className="text-[10px] text-slate-500 uppercase tracking-wide">On topic</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-accent-pink">+6 min</div>
+                      <div className="text-[10px] text-slate-500 uppercase tracking-wide">Over time</div>
+                    </div>
+                    <div>
+                      <div className="text-2xl font-bold text-accent-blue">3</div>
+                      <div className="text-[10px] text-slate-500 uppercase tracking-wide">Confusion pts</div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -271,19 +374,60 @@ export default function App() {
                   </li>
                 </ul>
               </div>
-              <div className="bg-gradient-to-br from-pastel-purple to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
-                <div className="bg-white rounded-lg p-6 shadow-sm space-y-2">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-900 font-medium">Period 3</span>
-                    <span className="text-accent-purple">Finished 4.2 ✓</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-900 font-medium">Period 5</span>
-                    <span className="text-slate-600">Mid-4.1</span>
-                  </div>
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-900 font-medium">Period 7</span>
-                    <span className="text-amber-600">Behind - needs reteach</span>
+              <div className="bg-gradient-to-br from-pastel-purple to-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xl">
+                <div className="bg-white rounded-xl p-5 sm:p-7 shadow-md">
+                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-5">AP Chemistry • Unit 4 Progress</div>
+                  <div className="space-y-4">
+                    {/* Period 3 */}
+                    <div className="p-4 sm:p-5 bg-gradient-to-br from-accent-purple/10 to-accent-purple/5 rounded-xl border border-accent-purple/20">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="font-bold text-slate-900">Period 3</div>
+                        <div className="text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-semibold">Ahead</div>
+                      </div>
+                      <div className="text-sm text-slate-700 mb-1.5">
+                        <span className="font-medium">Last class:</span> Finished 4.2 (Limiting Reagents)
+                      </div>
+                      <div className="text-sm text-slate-700 mb-1.5">
+                        <span className="font-medium">Next class:</span> Start 4.3 (Reaction Yield)
+                      </div>
+                      <div className="text-xs text-slate-500 pt-2 border-t border-slate-100">
+                        Objectives: 4.1 ✓, 4.2 ✓ • Reteach needed: None
+                      </div>
+                    </div>
+                    
+                    {/* Period 5 */}
+                    <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="font-bold text-slate-900">Period 5</div>
+                        <div className="text-xs bg-slate-200 text-slate-700 px-2.5 py-1 rounded-full font-semibold">On track</div>
+                      </div>
+                      <div className="text-sm text-slate-700 mb-1.5">
+                        <span className="font-medium">Last class:</span> Finished 4.1 (Stoichiometry)
+                      </div>
+                      <div className="text-sm text-slate-700 mb-1.5">
+                        <span className="font-medium">Next class:</span> Start 4.2 (Limiting Reagents)
+                      </div>
+                      <div className="text-xs text-slate-500 pt-2 border-t border-slate-100">
+                        Objectives: 4.1 ✓ • Reteach: Mole ratios (3 students)
+                      </div>
+                    </div>
+                    
+                    {/* Period 7 */}
+                    <div className="p-4 bg-amber-50/60 rounded-xl border border-amber-200">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className="font-bold text-slate-900">Period 7</div>
+                        <div className="text-xs bg-amber-100 text-amber-700 px-2.5 py-1 rounded-full font-semibold">Behind</div>
+                      </div>
+                      <div className="text-sm text-slate-700 mb-1.5">
+                        <span className="font-medium">Last class:</span> Mid-4.1 (Stoichiometry review)
+                      </div>
+                      <div className="text-sm text-slate-700 mb-1.5">
+                        <span className="font-medium">Next class:</span> Reteach mole concept, finish 4.1
+                      </div>
+                      <div className="text-xs text-slate-500 pt-2 border-t border-amber-100">
+                        Objectives: None yet • Reteach: Mole concept (10 students)
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -322,11 +466,50 @@ export default function App() {
                   </li>
                 </ul>
               </div>
-              <div className="lg:order-1 bg-gradient-to-br from-pastel-yellow to-white p-8 rounded-2xl border border-slate-200 shadow-xl">
-                <div className="bg-white rounded-lg p-6 shadow-sm text-xs space-y-2">
-                  <div><span className="font-medium text-slate-900">Covered:</span> Limiting reagents, stoichiometry</div>
-                  <div><span className="font-medium text-slate-900">Objectives met:</span> 4.2 (calculate limiting reagent)</div>
-                  <div><span className="font-medium text-slate-900">Review:</span> Textbook p.142-145</div>
+              <div className="lg:order-1 bg-gradient-to-br from-pastel-yellow to-white p-6 sm:p-8 rounded-2xl border border-slate-200 shadow-xl">
+                <div className="bg-white rounded-xl p-5 sm:p-7 shadow-md">
+                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-5">TODAY'S CLASS RECAP</div>
+                  <div className="space-y-4 text-sm">
+                    <div>
+                      <div className="font-bold text-slate-900 mb-2 text-base">What we covered</div>
+                      <div className="text-slate-700 leading-relaxed">
+                        Limiting reagents and excess reagents in chemical reactions. We worked through the mole ratio method using balanced equations and practiced with stoichiometry problems.
+                      </div>
+                    </div>
+                    <div className="pt-3 border-t border-slate-100">
+                      <div className="font-bold text-slate-900 mb-2">Objectives</div>
+                      <div className="text-slate-700 space-y-1.5">
+                        <div className="flex items-start gap-2">
+                          <span className="text-accent-yellow mt-0.5">✓</span>
+                          <span>Calculate limiting reagent in reactions (Obj 4.2)</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-accent-yellow mt-0.5">✓</span>
+                          <span>Apply mole ratios from balanced equations (Obj 4.2)</span>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-amber-500 mt-0.5">○</span>
+                          <span className="text-slate-600">Determine theoretical yield (Obj 4.3) — to continue tomorrow</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="pt-3 border-t border-slate-100">
+                      <div className="font-bold text-slate-900 mb-2">Common mistakes to avoid</div>
+                      <div className="text-slate-700 space-y-1.5">
+                        <div>• Don't confuse limiting reagent (runs out) with excess reagent (leftover)</div>
+                        <div>• Remember to convert grams → moles before comparing ratios</div>
+                        <div>• Use coefficients from the balanced equation, not the problem</div>
+                      </div>
+                    </div>
+                    <div className="pt-3 border-t border-slate-100">
+                      <div className="font-bold text-slate-900 mb-2">To review</div>
+                      <div className="text-slate-700 space-y-1">
+                        <div>• Textbook Chapter 4, pages 142-145</div>
+                        <div>• Practice problems 3-7</div>
+                        <div>• Lab worksheet (stoichiometry)</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -334,13 +517,13 @@ export default function App() {
 
 
           {/* Action Items from Insights */}
-          <div className="mb-32">
+          <div className="mt-32 mb-32">
             <div className="text-center mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
                 Plus the tools to act on what you learned
               </h2>
               <p className="text-lg text-slate-600 max-w-3xl mx-auto">
-                You know what to do with this information. ClassPal just makes it faster—so you can focus on the teaching part, not the admin part.
+                You know what to do with this information. ClassPal just makes it faster—so you can focus on the teaching part, not the paperwork.
               </p>
             </div>
 
@@ -352,7 +535,7 @@ export default function App() {
                 </div>
                 <h4 className="text-lg font-bold text-slate-900 mb-2">10-min reteach plan</h4>
                 <p className="text-sm text-slate-600 mb-3">
-                  Targeted mini-lesson for tomorrow based on confusion moments. Two options, specific to what students missed.
+                  A 10-min plan for tomorrow built from today's confusion. Two options, tailored to what students missed.
                 </p>
                 <div className="text-xs text-slate-500 bg-pastel-blue px-2 py-1 rounded inline-block">
                   Saves 20-30 min per reteach
@@ -366,7 +549,7 @@ export default function App() {
                 </div>
                 <h4 className="text-lg font-bold text-slate-900 mb-2">Exit ticket</h4>
                 <p className="text-sm text-slate-600 mb-3">
-                  5 questions aligned to what you actually taught. Answer key + misconception mapping. AP/IB exam-style.
+                  Five questions matched to what you taught. Answer key and misconception mapping. AP/IB-style.
                 </p>
                 <div className="text-xs text-slate-500 bg-pastel-pink px-2 py-1 rounded inline-block">
                   Ready in seconds
@@ -380,7 +563,7 @@ export default function App() {
                 </div>
                 <h4 className="text-lg font-bold text-slate-900 mb-2">Coaching insight</h4>
                 <p className="text-sm text-slate-600 mb-3">
-                  One bite-sized insight per lesson (opt-in). Glow + grow, evidence-based, cites timestamps. Never judgment.
+                  One optional insight per lesson. Evidence-based glow + grow with timestamps. Kind, never judgmental.
                 </p>
                 <div className="text-xs text-slate-500 bg-pastel-yellow px-2 py-1 rounded inline-block">
                   Always kind, always actionable
@@ -394,7 +577,7 @@ export default function App() {
                 </div>
                 <h4 className="text-lg font-bold text-slate-900 mb-2">Assignment time estimator</h4>
                 <p className="text-sm text-slate-600 mb-3">
-                  Estimate how long homework takes students (p25/p50/p75). Avoid workload overload across classes.
+                  See how long homework takes faster, typical, and slower students. Avoid overloading them across classes.
                 </p>
                 <div className="text-xs text-slate-500 bg-pastel-purple px-2 py-1 rounded inline-block">
                   Student workload guardrails
