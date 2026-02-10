@@ -113,12 +113,12 @@ export default function App() {
       <section className="py-20 sm:py-24">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-            You know what your students need.
+            Every class generates insights that could make tomorrow better.
             <br />
-            <span className="text-slate-600">You just don't have time to create it all.</span>
+            <span className="text-slate-600">Imagine using them all.</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto">
-            Writing exit tickets, tracking where each section left off, creating reteach plans, analyzing what confused students—you'd do it all if you had the time. ClassPal gives you the time.
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            Who was confused at 18:15. What took 10 min too long. Where Period 3 left off vs Period 5. What students need reteaching. One insight makes tomorrow 5% better. 180 days of insights? That's a different teacher. ClassPal captures them all—so you and your students improve every single day.
           </p>
         </div>
       </section>
