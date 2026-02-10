@@ -140,13 +140,13 @@ export default function App() {
             </div>
             
             <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 leading-tight">
-              After each class, you get what you'd create—
+              After each class, get insights that
               <span className="block mt-2 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink bg-clip-text text-transparent">
-                if you had the time
+                make tomorrow better
               </span>
             </h2>
             <p className="text-xl text-slate-600">
-              Four insights you already know you need. ClassPal just does the legwork.
+              The data that turns good teaching into great teaching—turning today's lesson into tomorrow's breakthrough.
             </p>
             
             {/* Accent line below */}
