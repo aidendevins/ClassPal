@@ -132,13 +132,6 @@ export default function App() {
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center mb-20">
-            {/* Accent line above */}
-            <div className="flex items-center justify-center gap-3 mb-8">
-              <div className="h-px w-12 bg-gradient-to-r from-transparent to-accent-blue" />
-              <div className="w-2 h-2 rounded-full bg-accent-blue" />
-              <div className="h-px w-12 bg-gradient-to-l from-transparent to-accent-blue" />
-            </div>
-            
             <h2 className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 leading-tight">
               After each class, get insights that
               <span className="block mt-2 bg-gradient-to-r from-accent-blue via-accent-purple to-accent-pink bg-clip-text text-transparent">
@@ -148,13 +141,6 @@ export default function App() {
             <p className="text-xl text-slate-600">
               The data that turns good teaching into great teaching—turning today's lesson into tomorrow's breakthrough.
             </p>
-            
-            {/* Accent line below */}
-            <div className="flex items-center justify-center gap-3 mt-8">
-              <div className="h-px w-16 bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
-              <div className="w-1.5 h-1.5 rounded-full bg-slate-300" />
-              <div className="h-px w-16 bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
-            </div>
           </div>
 
           {/* Four Equal Insights */}
