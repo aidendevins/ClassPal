@@ -217,4 +217,130 @@ router.post('/analyze', async (req, res) => {
   }
 });
 
+// Generate lesson summary and objectives
+router.post('/lesson-summary', async (req, res) => {
+  try {
+    const { transcript, model = 'gpt-4o', courseInfo = {} } = req.body;
+
+    if (!transcript || !transcript.trim()) {
+      return res.status(400).json({ error: 'Transcript is required' });
+    }
+
+    if (transcript.length < 50) {
+      return res.status(400).json({ error: 'Transcript too short for meaningful analysis' });
+    }
+
+    // Build context from courseInfo
+    const {
+      courseName = '',
+      unit = '',
+      objectives = [],
+      textbookRef = '',
+      topic = '',
+      materials = []
+    } = courseInfo;
+
+    // Build materials context
+    let materialsContext = '';
+    if (materials && materials.length > 0) {
+      materialsContext = '\n\nReference Materials:\n' + materials.map(m => {
+        const name = m.name ? `${m.name}: ` : '';
+        return `- ${m.type}: ${name}${m.content || ''}`;
+      }).join('\n');
+    }
+
+    // Build system prompt
+    const systemPrompt = `You are an expert at analyzing lesson transcripts for high school AP/IB teachers.
+
+Your task is to create a comprehensive lesson summary that is SPECIFIC to this class, not generic.
+
+Course context:${courseName ? `\n- Course: ${courseName}` : ''}${unit ? `\n- Unit: ${unit}` : ''}${topic ? `\n- Topic: ${topic}` : ''}${textbookRef ? `\n- Textbook: ${textbookRef}` : ''}${objectives.length > 0 ? `\n- Planned objectives: ${objectives.join('; ')}` : ''}${materialsContext}
+
+Extract and format as JSON:
+{
+  "summary": "2-3 sentences describing what was actually covered in this specific lesson (not generic)",
+  "objectives": [
+    {"text": "objective description", "code": "4.2.A if available", "status": "met" | "partial" | "not_met"}
+  ],
+  "vocabulary": ["term1", "term2", ...],
+  "examples": ["Specific examples or analogies the teacher used"],
+  "textbookRefs": ["Chapter/page references mentioned or relevant"],
+  "nextSteps": "What to do next class or what was left incomplete"
+}
+
+Be specific. Reference actual content from the transcript (concepts, examples, student questions). Avoid generic statements.`;
+
+    const userContent = `Analyze this lesson transcript:\n\n${transcript}`;
+
+    let response;
+
+    // Route to appropriate provider
+    if (model.startsWith('gpt-') || model.startsWith('o1')) {
+      const openai = getOpenAI();
+      if (!openai) {
+        return res.status(500).json({ error: 'OpenAI API key not configured' });
+      }
+
+      const completion = await openai.chat.completions.create({
+        model: model,
+        messages: [
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userContent }
+        ],
+        response_format: { type: 'json_object' }
+      });
+
+      response = JSON.parse(completion.choices[0].message.content);
+
+    } else if (model.startsWith('claude')) {
+      const anthropic = getAnthropic();
+      if (!anthropic) {
+        return res.status(500).json({ error: 'Anthropic API key not configured' });
+      }
+
+      const message = await anthropic.messages.create({
+        model: model,
+        max_tokens: 4096,
+        system: systemPrompt,
+        messages: [
+          { role: 'user', content: userContent }
+        ],
+      });
+
+      response = JSON.parse(message.content[0].text);
+
+    } else if (model.startsWith('gemini')) {
+      const googleAI = getGoogleAI();
+      if (!googleAI) {
+        return res.status(500).json({ error: 'Google API key not configured' });
+      }
+
+      const genModel = googleAI.getGenerativeModel({ 
+        model: model,
+        generationConfig: {
+          responseMimeType: "application/json"
+        }
+      });
+      const result = await genModel.generateContent(`${systemPrompt}\n\n${userContent}`);
+      response = JSON.parse(result.response.text());
+
+    } else {
+      return res.status(400).json({ error: 'Unknown model' });
+    }
+
+    res.json({
+      success: true,
+      model: model,
+      summary: response,
+    });
+
+  } catch (error) {
+    console.error('Lesson summary error:', error);
+    res.status(500).json({
+      error: 'Summary generation failed',
+      message: error.message,
+    });
+  }
+});
+
 module.exports = router;
