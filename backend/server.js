@@ -11,6 +11,7 @@ const PORT = process.env.PORT || 8000;
 const frontendUrls = process.env.FRONTEND_URL 
   ? process.env.FRONTEND_URL.split(',').map(url => url.trim())
   : ['http://localhost:5173'];
+console.log('🔐 CORS allowed origins:', frontendUrls);
 app.use(cors({
   origin: (origin, callback) => {
     // Allow requests with no origin (mobile apps, Postman, etc.) in development
@@ -18,7 +19,12 @@ app.use(cors({
       return callback(null, true);
     }
     
-    // Check if origin matches any allowed URL
+    // In development, allow any localhost port
+    if (process.env.NODE_ENV !== 'production' && origin && origin.startsWith('http://localhost:')) {
+      return callback(null, true);
+    }
+    
+    // In production, check if origin matches any allowed URL
     if (!origin || frontendUrls.some(url => origin === url || origin.startsWith(url))) {
       callback(null, true);
     } else {
