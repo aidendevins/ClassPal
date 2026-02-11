@@ -5,12 +5,18 @@ const OpenAI = require('openai');
 const Anthropic = require('@anthropic-ai/sdk');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const fs = require('fs');
+const path = require('path');
+const os = require('os');
 
 // In-memory waitlist (use DB in production)
 const waitlist = [];
 
-// Configure multer for file uploads
-const upload = multer({ dest: 'uploads/' });
+// Use system temp dir for uploads (works on Railway/ephemeral filesystems)
+const uploadDir = path.join(os.tmpdir(), 'classpal-uploads');
+if (!fs.existsSync(uploadDir)) {
+  fs.mkdirSync(uploadDir, { recursive: true });
+}
+const upload = multer({ dest: uploadDir });
 
 // OpenAI client created only when API key is set (avoids crash on startup)
 function getOpenAI() {
@@ -122,9 +128,10 @@ router.post('/transcribe', upload.single('audio'), async (req, res) => {
       }
     }
     
+    const message = process.env.NODE_ENV === 'production' ? 'Transcription failed' : error.message;
     res.status(500).json({
       error: 'Transcription failed',
-      message: error.message,
+      message,
     });
   }
 });
