@@ -1,12 +1,12 @@
 // Helper function to find character indices
-    function findIndices(transcript, substring) {
-      const startIndex = transcript.indexOf(substring);
-      if (startIndex === -1) {
-        return null;
-      }
-      const endIndex = startIndex + substring.length;
-      return { start: startIndex, end: endIndex };
-    };
+function findIndices(transcript, substring) {
+  const startIndex = transcript.indexOf(substring);
+  if (startIndex === -1) {
+    return null;
+  }
+  const endIndex = startIndex + substring.length;
+  return { start: startIndex, end: endIndex };
+}
 
 const router = express.Router();
 const multer = require('multer');
@@ -30,37 +30,9 @@ router.post('/analyze', upload.fields([
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
 
-    const prompt = `
-      You are an expert educational assistant. I am providing you with a rubric image and a student response image.
-
-      Your task is:
-      1. OCR the Rubric: Extract a list of specific grading criteria/points from the rubric image.
-      2. OCR the Student Response: Provide a full, accurate text transcript of the student's work from the response image.
-      3. Analysis: For each rubric point, identify if it is mentioned or satisfied in the student's transcript. If it is, provide the EXACT substring from the transcript that corresponds to it.
-
-      Return the result ONLY as a JSON object with the following structure:
-      {
-        "rubric_points": ["Point 1", "Point 2", ...],
-        "transcript": "Full student response text...",
-        "highlights": [
-          {
-            "rubric_point": "Point 1",
-            "text_segment": "The exact substring from the transcript",
-            "explanation": "Brief reason why this satisfies the point"
-          },
-          ...
-        ]
-      }
-
-      Important:
-      - The "text_segment" MUST be a verbatim substring of the "transcript".
-      - If a rubric point is not found in the student response, do not include it in "highlights".
-      - Be precise with OCR, especially for handwriting.
-    `;
-
     // Stage 1: OCR Rubric
     const rubricResult = await model.generateContent([
-      `You are an expert educational assistant. Extract a list of grading criteria/points from the rubric image. Return only a JSON array of strings, where each string is a criterion.  Do not include any other text, explanations, or formatting. The JSON should be directly parsable. The image is provided next.`,      
+      `You are an expert educational assistant. Extract a list of grading criteria/points from the rubric image. Return only a JSON array of strings, where each string is a criterion.  Do not include any other text, explanations, or formatting. The JSON should be directly parsable. The image is provided next.`,
       {
         inlineData: {
           data: rubricBuffer.toString("base64"),
@@ -124,7 +96,21 @@ router.post('/analyze', upload.fields([
       throw new Error("Could not parse JSON from Gemini response");
     }
 
-    const data = JSON.parse(jsonMatch[0]);
+    let data = JSON.parse(jsonMatch[0]);
+
+    // Add indices to highlights
+    if (data.highlights) {
+      data.highlights = data.highlights.map(highlight => {
+        const startIndex = data.transcript.indexOf(highlight.text_segment);
+        const endIndex = startIndex + highlight.text_segment.length;
+        const indices = startIndex !== -1 ? { start: startIndex, end: endIndex } : null;
+        return {
+          ...highlight,
+          indices: indices
+        };
+      });
+    }
+
     res.json(data);
 
   } catch (error) {
