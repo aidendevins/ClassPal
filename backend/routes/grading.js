@@ -1,13 +1,4 @@
-// Helper function to find character indices
-function findIndices(transcript, substring) {
-  const startIndex = transcript.indexOf(substring);
-  if (startIndex === -1) {
-    return null;
-  }
-  const endIndex = startIndex + substring.length;
-  return { start: startIndex, end: endIndex };
-}
-
+const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const { GoogleGenerativeAI } = require("@google/generative-ai");
@@ -32,7 +23,7 @@ router.post('/analyze', upload.fields([
 
     // Stage 1: OCR Rubric
     const rubricResult = await model.generateContent([
-      `You are an expert educational assistant. Extract a list of grading criteria/points from the rubric image. Return only a JSON array of strings, where each string is a criterion.  Do not include any other text, explanations, or formatting. The JSON should be directly parsable. The image is provided next.`,
+      `You are an expert educational assistant. Extract a list of grading criteria/points from the rubric image. Return only a JSON array of strings, where each string is a criterion. Do not include any other text, explanations, or formatting. The JSON should be directly parsable. The image is provided next.`,
       {
         inlineData: {
           data: rubricBuffer.toString("base64"),
@@ -44,7 +35,9 @@ router.post('/analyze', upload.fields([
     const rubricText = rubricResult.response.text();
     let rubricPoints = [];
     try {
-      rubricPoints = JSON.parse(rubricText);
+      // Clean potential markdown wrap
+      const cleanRubricText = rubricText.match(/\[[\s\S]*\]/)?.[0] || rubricText;
+      rubricPoints = JSON.parse(cleanRubricText);
     } catch (error) {
       console.error('Error parsing rubric points:', error, rubricText);
       return res.status(500).json({ error: 'Failed to extract rubric points.' });
@@ -52,31 +45,35 @@ router.post('/analyze', upload.fields([
 
     // Stage 2: Analyze Response
     const analysisPrompt = `
-      You are an expert educational assistant.  I am providing you with the following:
-      1.  A list of rubric points: ${JSON.stringify(rubricPoints)}
-      2.  A student's response (text transcript).
+      You are an expert educational assistant. I am providing you with the following:
+      1. A list of rubric points: ${JSON.stringify(rubricPoints)}
+      2. A student's response (image).
 
       Your task is:
-      1.  Provide the full text transcript of the student's response.
-      2.  For each rubric point, identify if it is mentioned or satisfied in the student's transcript.  If it is, provide the EXACT substring from the transcript that corresponds to it.
+      1. Transcribe the student's response completely.
+      2. For each rubric point, identify if it is mentioned or satisfied in the student's transcript.
+      3. For each satisfied point, identify the EXACT start and end character indices of the corresponding 'text_segment' within your 'transcript'.
 
       Return the result ONLY as a JSON object with the following structure:
       {
         "transcript": "Full student response text...",
         "highlights": [
           {
-            "rubric_point": "Point 1",
-            "text_segment": "The exact substring from the transcript",
+            "rubric_point": "The original rubric point text",
+            "text_segment": "The exact verbatim substring from the transcript",
             "explanation": "Brief reason why this satisfies the point",
-            "indices": {"start": 0, "end": 10}
-          },
-          ...
-        ]
+            "start": 0,
+            "end": 10
+          }
+        ],
+        "rubric_points": ${JSON.stringify(rubricPoints)}
       }
 
       Important:
-      - The "text_segment" MUST be a verbatim substring of the "transcript".
+      - The 'start' and 'end' indices MUST be correct relative to the 'transcript' string you provide.
+      - 'end' should be the index of the character immediately AFTER the segment (standard slice/substring behavior).
       - If a rubric point is not found in the student response, do not include it in "highlights".
+      - Return ONLY the JSON object.
     `;
 
     const analysisResult = await model.generateContent([
@@ -90,7 +87,6 @@ router.post('/analyze', upload.fields([
     ]);
 
     const analysisText = analysisResult.response.text();
-    // Extract JSON if the model wrapped it in markdown code blocks
     const jsonMatch = analysisText.match(/\{[\s\S]*\}/);
     if (!jsonMatch) {
       throw new Error("Could not parse JSON from Gemini response");
@@ -98,17 +94,9 @@ router.post('/analyze', upload.fields([
 
     let data = JSON.parse(jsonMatch[0]);
 
-    // Add indices to highlights
-    if (data.highlights) {
-      data.highlights = data.highlights.map(highlight => {
-        const startIndex = data.transcript.indexOf(highlight.text_segment);
-        const endIndex = startIndex + highlight.text_segment.length;
-        const indices = startIndex !== -1 ? { start: startIndex, end: endIndex } : null;
-        return {
-          ...highlight,
-          indices: indices
-        };
-      });
+    // Ensure rubric_points is included for the frontend if Gemini missed it
+    if (!data.rubric_points) {
+      data.rubric_points = rubricPoints;
     }
 
     res.json(data);
