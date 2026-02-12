@@ -37,6 +37,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api', require('./routes/api'));
+app.use('/api/grading', require('./routes/grading'));
 
 // Health check
 app.get('/health', (req, res) => {
