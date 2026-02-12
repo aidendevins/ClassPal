@@ -3,12 +3,25 @@ import React, { useState } from 'react';
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
 const Grading = () => {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
   const [rubricFile, setRubricFile] = useState(null);
   const [responseFile, setResponseFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [hoveredPoint, setHoveredPoint] = useState(null);
+
+  const handlePasswordSubmit = (e) => {
+    e.preventDefault();
+    if (password === '0612') {
+      setIsAuthenticated(true);
+      setPassword('');
+    } else {
+      alert('Incorrect password');
+      setPassword('');
+    }
+  };
 
   const handleAnalyze = async () => {
     if (!rubricFile || !responseFile) {
@@ -116,6 +129,41 @@ const Grading = () => {
       </div>
     );
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center px-4">
+        <div className="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-slate-200">
+          <div className="text-center mb-6">
+            <div className="w-12 h-12 bg-gradient-to-br from-accent-blue to-accent-purple rounded-xl mx-auto mb-4" />
+            <h1 className="text-2xl font-bold text-slate-900">Grading</h1>
+            <p className="text-sm text-slate-600 mt-2">Password-protected area</p>
+          </div>
+          <form onSubmit={handlePasswordSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm font-semibold text-slate-700 mb-2">
+                Enter Access Code
+              </label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 border border-slate-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                placeholder="••••"
+                autoFocus
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full px-4 py-3 bg-slate-900 text-white font-semibold rounded-xl hover:bg-slate-800 transition shadow-lg"
+            >
+              Unlock
+            </button>
+          </form>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#FDFCFB]">
