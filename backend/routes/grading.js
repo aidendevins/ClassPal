@@ -72,8 +72,9 @@ function findBestMatch(fullText, quote) {
   return null;
 }
 
-// Prefer vision-capable model; fallback to one that works with most API keys
-const GEMINI_MODEL = process.env.GEMINI_GRADING_MODEL || 'gemini-1.5-pro';
+// Use the best reasoning model for precision grading (accuracy > speed)
+// gemini-2.5-pro: state-of-the-art thinking model for complex analysis
+const GEMINI_MODEL = process.env.GEMINI_GRADING_MODEL || 'gemini-2.5-pro';
 
 router.post('/analyze', upload.fields([
   { name: 'rubric_image', maxCount: 1 },
