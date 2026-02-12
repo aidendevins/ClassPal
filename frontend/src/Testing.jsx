@@ -507,8 +507,8 @@ export default function Testing() {
                 </div>
               </div>
             )}
-          </div>
         </div>
+        )}
 
         {/* Model Comparison Section */}
         <div className="bg-white rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
