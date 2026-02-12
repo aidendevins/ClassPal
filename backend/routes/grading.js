@@ -80,7 +80,7 @@ router.post('/analyze', upload.fields([
     const rubricBuffer = req.files['rubric_image'][0].buffer;
     const responseBuffer = req.files['response_image'][0].buffer;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
 
     // Stage 1: OCR Rubric
     const rubricResult = await model.generateContent([

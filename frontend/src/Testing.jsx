@@ -355,14 +355,14 @@ export default function Testing() {
                     <div className="text-xs text-slate-600">Best</div>
                   </button>
                   <button
-                    onClick={() => setSummaryModel('gemini-1.5-pro')}
+                    onClick={() => setSummaryModel('gemini-2.5-pro')}
                     className={`p-3 rounded-xl border-2 transition ${
-                      summaryModel === 'gemini-1.5-pro'
+                      summaryModel === 'gemini-2.5-pro'
                         ? 'border-blue-500 bg-blue-50'
                         : 'border-slate-200 bg-white hover:border-slate-300'
                     }`}
                   >
-                    <div className="font-bold text-slate-900 text-sm">Gemini 1.5</div>
+                    <div className="font-bold text-slate-900 text-sm">Gemini 2.5</div>
                     <div className="text-xs text-slate-600">Long Context</div>
                   </button>
                 </div>
@@ -556,14 +556,14 @@ export default function Testing() {
                   <div className="text-xs text-slate-600 mt-1">Anthropic • Best</div>
                 </button>
                 <button
-                  onClick={() => setSelectedModel('gemini-1.5-pro')}
+                  onClick={() => setSelectedModel('gemini-2.5-pro')}
                   className={`p-4 rounded-xl border-2 transition ${
-                    selectedModel === 'gemini-1.5-pro'
+                    selectedModel === 'gemini-2.5-pro'
                       ? 'border-blue-500 bg-blue-50'
                       : 'border-slate-200 bg-white hover:border-slate-300'
                   }`}
                 >
-                  <div className="font-bold text-slate-900">Gemini 1.5</div>
+                  <div className="font-bold text-slate-900">Gemini 2.5</div>
                   <div className="text-xs text-slate-600 mt-1">Google • Long</div>
                 </button>
                 <button
