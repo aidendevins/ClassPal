@@ -44,14 +44,19 @@ const Grading = () => {
       });
 
       if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.error || 'Analysis failed');
+        let errorData = {};
+        try {
+          errorData = await res.json();
+        } catch (_) {}
+        const msg = errorData.error || errorData.message || 'Analysis failed';
+        const detail = errorData.detail ? ` (${errorData.detail})` : '';
+        throw new Error(msg + detail);
       }
 
       const data = await res.json();
       setResult(data);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Failed to analyze images');
     } finally {
       setLoading(false);
     }

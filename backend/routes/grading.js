@@ -5,7 +5,11 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const upload = multer({ storage: multer.memoryStorage() });
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+function getGenAI() {
+  const key = process.env.GOOGLE_API_KEY;
+  if (!key || !key.trim()) return null;
+  return new GoogleGenerativeAI(key);
+}
 
 /**
  * Helper: Find the best matching substring indices for a given quote in a text.
@@ -68,11 +72,22 @@ function findBestMatch(fullText, quote) {
   return null;
 }
 
+// Prefer vision-capable model; fallback to one that works with most API keys
+const GEMINI_MODEL = process.env.GEMINI_GRADING_MODEL || 'gemini-1.5-pro';
+
 router.post('/analyze', upload.fields([
   { name: 'rubric_image', maxCount: 1 },
   { name: 'response_image', maxCount: 1 }
 ]), async (req, res) => {
   try {
+    const genAI = getGenAI();
+    if (!genAI) {
+      return res.status(503).json({
+        error: 'Grading is not configured',
+        message: 'GOOGLE_API_KEY is missing on the server. Add it in Railway environment variables.'
+      });
+    }
+
     if (!req.files || !req.files['rubric_image'] || !req.files['response_image']) {
       return res.status(400).json({ error: 'Missing images. Both rubric_image and response_image are required.' });
     }
@@ -80,7 +95,7 @@ router.post('/analyze', upload.fields([
     const rubricBuffer = req.files['rubric_image'][0].buffer;
     const responseBuffer = req.files['response_image'][0].buffer;
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-pro" });
+    const model = genAI.getGenerativeModel({ model: GEMINI_MODEL });
 
     // Stage 1: OCR Rubric
     const rubricResult = await model.generateContent([
@@ -180,7 +195,12 @@ router.post('/analyze', upload.fields([
 
   } catch (error) {
     console.error('Grading analysis error:', error);
-    res.status(500).json({ error: 'Failed to analyze images' });
+    const isDev = process.env.NODE_ENV !== 'production';
+    const message = error.message || 'Failed to analyze images';
+    res.status(500).json({
+      error: 'Failed to analyze images',
+      ...(isDev && { detail: message })
+    });
   }
 });
 
