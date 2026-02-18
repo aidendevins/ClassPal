@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api';
 
@@ -7,10 +7,35 @@ const Grading = () => {
   const [password, setPassword] = useState('');
   const [rubricFile, setRubricFile] = useState(null);
   const [responseFile, setResponseFile] = useState(null);
+  const [rubricPreview, setRubricPreview] = useState(null);
+  const [responsePreview, setResponsePreview] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [additionalContext, setAdditionalContext] = useState('');
+  const [totalPoints, setTotalPoints] = useState('');
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [hoveredPoint, setHoveredPoint] = useState(null);
+
+  // Create preview URLs when files are selected
+  useEffect(() => {
+    if (rubricFile) {
+      const url = URL.createObjectURL(rubricFile);
+      setRubricPreview(url);
+      return () => URL.revokeObjectURL(url);
+    } else {
+      setRubricPreview(null);
+    }
+  }, [rubricFile]);
+
+  useEffect(() => {
+    if (responseFile) {
+      const url = URL.createObjectURL(responseFile);
+      setResponsePreview(url);
+      return () => URL.revokeObjectURL(url);
+    } else {
+      setResponsePreview(null);
+    }
+  }, [responseFile]);
 
   const handlePasswordSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +61,13 @@ const Grading = () => {
     const formData = new FormData();
     formData.append('rubric_image', rubricFile);
     formData.append('response_image', responseFile);
+    if (additionalContext.trim()) {
+      formData.append('context', additionalContext.trim());
+    }
+    const totalNum = totalPoints.trim() ? parseInt(totalPoints.trim(), 10) : null;
+    if (totalNum != null && !isNaN(totalNum) && totalNum > 0) {
+      formData.append('total_points', String(totalNum));
+    }
 
     try {
       const res = await fetch(`${API_URL}/grading/analyze`, {
@@ -189,21 +221,57 @@ const Grading = () => {
 
             <div className="grid md:grid-cols-2 gap-6 mb-8">
               <div className={`p-8 bg-white rounded-3xl border-2 transition-all ${rubricFile ? 'border-indigo-500' : 'border-dashed border-slate-200'}`}>
-                <label className="cursor-pointer">
+                <label className="cursor-pointer block">
                   <div className="text-lg font-bold mb-1">Rubric</div>
                   <div className="text-xs text-slate-400 mb-4">Click to upload image</div>
                   <input type="file" className="hidden" accept="image/*" onChange={(e) => setRubricFile(e.target.files[0])} />
-                  {rubricFile && <div className="text-xs text-green-600 font-bold">{rubricFile.name}</div>}
+                  {rubricFile && <div className="text-xs text-green-600 font-bold mb-3">{rubricFile.name}</div>}
                 </label>
+                {rubricPreview && (
+                  <div className="mt-4 border border-slate-200 rounded-xl overflow-hidden">
+                    <img src={rubricPreview} alt="Rubric preview" className="w-full h-auto max-h-64 object-contain bg-slate-50" />
+                  </div>
+                )}
               </div>
               <div className={`p-8 bg-white rounded-3xl border-2 transition-all ${responseFile ? 'border-indigo-500' : 'border-dashed border-slate-200'}`}>
-                <label className="cursor-pointer">
+                <label className="cursor-pointer block">
                   <div className="text-lg font-bold mb-1">Student Work</div>
                   <div className="text-xs text-slate-400 mb-4">Handwritten or typed</div>
                   <input type="file" className="hidden" accept="image/*" onChange={(e) => setResponseFile(e.target.files[0])} />
-                  {responseFile && <div className="text-xs text-green-600 font-bold">{responseFile.name}</div>}
+                  {responseFile && <div className="text-xs text-green-600 font-bold mb-3">{responseFile.name}</div>}
                 </label>
+                {responsePreview && (
+                  <div className="mt-4 border border-slate-200 rounded-xl overflow-hidden">
+                    <img src={responsePreview} alt="Student work preview" className="w-full h-auto max-h-64 object-contain bg-slate-50" />
+                  </div>
+                )}
               </div>
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-sm font-bold text-slate-900 mb-2">Additional context (optional)</label>
+              <textarea
+                value={additionalContext}
+                onChange={(e) => setAdditionalContext(e.target.value)}
+                placeholder="e.g. This is an IB style question with the maximum number of marks being 7."
+                rows={3}
+                className="w-full px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-900 placeholder-slate-400"
+              />
+              <p className="text-xs text-slate-500 mt-1">Add grading context (question type, max marks, subject, etc.) to improve analysis.</p>
+            </div>
+
+            <div className="mb-6">
+              <label className="block text-sm font-bold text-slate-900 mb-2">Total points for this question (optional)</label>
+              <input
+                type="number"
+                min="1"
+                max="100"
+                value={totalPoints}
+                onChange={(e) => setTotalPoints(e.target.value)}
+                placeholder="e.g. 7"
+                className="w-32 px-4 py-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-slate-900 placeholder-slate-400"
+              />
+              <p className="text-xs text-slate-500 mt-1">Used to show grade as points earned / total (e.g. 5/7). If blank, total = number of rubric criteria.</p>
             </div>
 
             {error && <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-xl border border-red-100">{error}</div>}
@@ -218,10 +286,15 @@ const Grading = () => {
           </div>
         ) : (
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center justify-between mb-8 flex-wrap gap-4">
               <button onClick={() => setResult(null)} className="text-sm font-bold text-slate-400 hover:text-slate-900 transition-colors">← Start Over</button>
-              <div className="px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-bold border border-green-100">
-                {result.highlights.length} / {result.rubric_points?.length || 0} Criteria Met
+              <div className="flex items-center gap-4">
+                <div className="px-5 py-3 bg-slate-900 text-white rounded-xl font-bold text-lg">
+                  Grade: {result.points_earned != null ? result.points_earned : result.highlights.length} / {result.total_points != null ? result.total_points : (result.rubric_points?.length || 0)}
+                </div>
+                <div className="px-4 py-2 bg-green-50 text-green-700 rounded-lg text-sm font-bold border border-green-100">
+                  {result.highlights.length} / {result.rubric_points?.length || 0} criteria met
+                </div>
               </div>
             </div>
 
